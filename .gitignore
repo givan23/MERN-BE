@@ -1,0 +1,11 @@
+# Don't check auto-generated stuff into git
+dist
+node_modules
+package-lock.json
+.idea
+.vscode
+doc
+apidoc
+docs
+
+
