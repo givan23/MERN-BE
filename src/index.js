@@ -1,12 +1,16 @@
 import express from 'express';
-import {CONNECTED, HELLO_WORLD, THREE_THOUSEND} from "./Constants/ServerConstants";
+import {DATABASE_URL, HORSE_RACER_SERVICE} from "./Constants/MongoConstants";
+import {getMongoConnection} from "./Mongo/MongoConnection";
+import {getServerConnection} from "./Server/ServerConnection";
+import {THREE_THOUSENDTWO_PORT} from "./Constants/ServerConstants";
+import RaceHorseRouter from "./Routes/HorseRacerRouter.js";
 
 
-const app = express();
-app.get('/', function (req, res) {
-  res.send(HELLO_WORLD);
-});
+//START DB
+getMongoConnection(DATABASE_URL);
 
-app.listen(THREE_THOUSEND, function () {
-  console.log(CONNECTED);
-});
+//START SERVER
+getServerConnection(express, THREE_THOUSENDTWO_PORT, HORSE_RACER_SERVICE, RaceHorseRouter);
+
+
+
