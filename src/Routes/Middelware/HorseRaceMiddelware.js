@@ -1,4 +1,4 @@
-import HorseRacer from "../../Models/HorseRacerModel";
+import HorseRacer from "../../Models/HorseRacerSchema";
 
 export const findRacerById = async (req, res, next) => {
     let horseRacer = "";

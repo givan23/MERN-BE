@@ -1,7 +1,8 @@
 import express from 'express';
 const router = express.Router();
-import HorseRacer from "../Models/HorseRacerModel.js";
+import HorseRacer from "../Models/HorseRacerSchema.js";
 import {findRacerById} from "./Middelware/HorseRaceMiddelware";
+import {horseRacerModel} from "../Models/HorseRacerModel";
 
 
 
@@ -37,13 +38,8 @@ router.get('/:id', findRacerById, (req, res) => {
  */
 router.post('/', async (req, res) => {
 
-    const horseRacer = new HorseRacer({
-        channelId: req.body.channelId,
-        disciplineDescription: req.body.disciplineDescription
-    });
-
     try {
-        const newHorseRacer = await horseRacer.save();
+        const newHorseRacer = await horseRacerModel().save();
         res.status(201).json(newHorseRacer);
     } catch (error) {
         res.status(400).json({message: error.message});
@@ -56,6 +52,7 @@ router.post('/', async (req, res) => {
  * Update one horse racer list
  * PATCH http://localhost:3002/horse-racers/id
  */
+/*
 router.patch('/:id', findRacerById, async (req, res) => {
         if (req.body.channelId != null) {
             res.horseRacer.channelId = req.body.channelId;
@@ -71,7 +68,7 @@ router.patch('/:id', findRacerById, async (req, res) => {
         res.status(400).json({ message: error.message })
     }
 });
-
+*/
 
 /**
  * Delete one horse racer list
